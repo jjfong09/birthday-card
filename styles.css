@@ -1,0 +1,355 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100%;
+  overscroll-behavior-y: none;
+}
+
+body {
+  height: 100%;
+  width: 100vw;
+  background-color: #F2EDD8;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+}
+
+/* ── SECTION 1: HERO ── */
+.section-hero {
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── THREE-COLUMN LAYOUT ── */
+.stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 24px;
+  gap: 0;
+}
+
+/* ── BANANA CHARACTERS ── */
+.banana-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.banana-side img {
+  width: clamp(360px, 20vw, 260px);
+  object-fit: contain;
+}
+
+/* party banana — pointer to hint it's interactive */
+.section-hero .banana-side:first-child img {
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.section-hero .banana-side:first-child img:hover {
+  transform: rotate(-12deg);
+}
+
+/* yay banana — tilt on hover */
+.section-hero .banana-side:last-child img {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.section-hero .banana-side:last-child img:hover {
+  transform: rotate(12deg);
+}
+
+/* ── CENTER CONTENT ── */
+.center {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 23px;
+  font-weight: 400;
+  color: #9A7200;
+  line-height: 1.3;
+  letter-spacing: -0.06em;
+}
+
+.headline {
+  font-family: 'Cabin Sketch', cursive;
+  font-size: clamp(4.8rem, 6vw, 3.84rem);
+  font-weight: 700;
+  color: #9A7200;
+  line-height: 1.15;
+  margin-top: -6px;
+}
+
+.photo {
+  width: clamp(450px, 26.4vw, 324px);
+  display: block;
+  position: relative;
+  left: 40px;
+}
+
+@media (max-width: 640px) {
+  .photo {
+    width: 72vw;
+    left: 20px;
+  }
+}
+
+.scroll-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #E8B800;
+  color: #3B2800;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 12px 28px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  text-transform: lowercase;
+}
+
+.scroll-btn svg {
+  width: 20px;
+  height: 20px;
+  animation: bounce-arrow 1.2s ease-in-out infinite;
+}
+
+@keyframes bounce-arrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+/* ── HERO: LOAD ANIMATION INITIAL STATES ── */
+.eyebrow-1,
+.eyebrow-2 {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.section-hero .headline,
+.section-hero .photo,
+.section-hero .scroll-btn {
+  opacity: 0;
+  transform: scale(0.88);
+}
+
+.section-hero .banana-side:first-child {
+  opacity: 0;
+  transform: translateX(-70px);
+}
+
+.section-hero .banana-side:last-child {
+  opacity: 0;
+  transform: translateX(70px);
+}
+
+/* ── FOOTER CREDIT ── */
+.credit {
+  position: fixed;
+  bottom: 20px;
+  left: 24px;
+  font-size: 0.8rem;
+  color: #9A7200;
+  opacity: 0.75;
+  z-index: 100;
+}
+
+/* ── SECTION 2: LETTER ── */
+.section-letter {
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  overflow: hidden;
+  position: relative;
+  background-color: #F2EDD8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.letter-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.envelope-stage {
+  position: relative;
+  width: clamp(300px, 40vw, 420px);
+}
+
+.envelope-img {
+  width: 100%;
+  display: block;
+  border-radius: 6px;
+}
+
+/* overlay photos start hidden and pop in when class is added */
+.overlay-photo {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.4s ease,
+              transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+.overlay-photo--1 {
+  width: 42%;
+  bottom: -18%;
+  right: -14%;
+  transform: scale(0.7) rotate(3deg);
+}
+
+.overlay-photo--2 {
+  width: 160%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.overlay-photo.visible {
+  opacity: 1;
+}
+
+.overlay-photo--1.visible {
+  transform: scale(1) rotate(3deg);
+}
+
+.overlay-photo--2.visible {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.letter-msg {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: clamp(14px, 1.5vw, 18px);
+  font-weight: 400;
+  color: #9A7200;
+  letter-spacing: -0.04em;
+  line-height: 1.7;
+  text-align: center;
+  transition: opacity 0.25s ease;
+}
+
+.letter-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+}
+
+.letter-actions--hidden {
+  display: none;
+}
+
+.letter-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 700;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  background: #E8B800;
+  color: #3B2800;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  letter-spacing: -0.03em;
+}
+
+.letter-btn:hover {
+  transform: scale(1.07);
+}
+
+/* size variants */
+.letter-btn--sm   { font-size: 0.95rem; padding: 13px 36px; }
+.letter-btn--lg   { font-size: 1rem;    padding: 16px 44px; }
+.letter-btn--xs   { font-size: 0.8rem;  padding: 10px 26px; }
+.letter-btn--wide { font-size: 1rem;    padding: 16px 48px; }
+
+/* ── SECTION 3: BIRTHDAY CARD (locked until letter is opened) ── */
+.section-card {
+  display: none;
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  overflow: hidden;
+  position: relative;
+  background-color: #F2EDD8;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── BANANA BACKGROUND ── */
+.banana-bg-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-banana {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform, opacity;
+}
+
+/* ── BIRTHDAY CARD ── */
+.card {
+  position: relative;
+  z-index: 10;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 2px solid #E6E0CA;
+  /* box-shadow: 0 4px 32px rgba(0, 0, 0, 0.08); */
+  padding: 52px 56px;
+  max-width: 520px;
+  width: 88%;
+  opacity: 0;
+  transform: translateY(28px) scale(0.97);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 18px;
+}
+
+.card-body {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #555;
+}

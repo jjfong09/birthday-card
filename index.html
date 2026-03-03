@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Mohnish</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&family=Cabin+Sketch:wght@700&family=IBM+Plex+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ── SECTION 1: HERO ── -->
+  <section class="section-hero">
+    <div class="stage">
+      <div class="banana-side">
+        <img src="images/party.png" alt="Party banana" />
+      </div>
+
+      <div class="center">
+        <p class="eyebrow">
+          <span class="eyebrow-1">Hey Mohnish....</span>
+          <span class="eyebrow-2">guess what...</span>
+        </p>
+        <h1 class="headline">It's Your Birthday!!</h1>
+        <video class="photo" src="images/mohnish_home.mp4" autoplay loop muted playsinline></video>
+        <button class="scroll-btn" id="scroll-btn">
+          scroll for a surprise
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="banana-side">
+        <img src="images/yay copy.png" alt="Yay banana" />
+      </div>
+    </div>
+
+    <p class="credit">made with ♡ by jess</p>
+  </section>
+
+  <!-- ── SECTION 2: LETTER ── -->
+  <section class="section-letter" id="section-letter">
+    <div class="letter-content">
+
+      <div class="envelope-stage">
+        <img class="envelope-img" src="images/close_letter.png" alt="A sealed envelope" />
+        <!-- state 2: single photo bottom-right -->
+        <img class="overlay-photo overlay-photo--1" id="overlay-1" src="images/first_me.png" alt="" />
+        <!-- state 3: full photo collage -->
+        <img class="overlay-photo overlay-photo--2" id="overlay-2" src="images/me_3.png" alt="" />
+      </div>
+
+      <p class="letter-msg" id="letter-msg">
+        looks like you got a letter... do you want to open it?
+      </p>
+
+      <!-- state 1 buttons -->
+      <div class="letter-actions" id="letter-btns-1">
+        <button class="letter-btn letter-btn--sm" id="btn-yes">yes</button>
+        <button class="letter-btn letter-btn--sm" id="btn-no">no</button>
+      </div>
+
+      <!-- state 2 buttons -->
+      <div class="letter-actions letter-actions--hidden" id="letter-btns-2">
+        <button class="letter-btn letter-btn--lg" id="btn-click-me">click me</button>
+        <button class="letter-btn letter-btn--xs" id="btn-still-no">still no</button>
+      </div>
+
+      <!-- state 3 button -->
+      <div class="letter-actions letter-actions--hidden" id="letter-btns-3">
+        <button class="letter-btn letter-btn--wide" id="btn-only-option">this is your only option now</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── SECTION 3: BIRTHDAY CARD (locked until letter is opened) ── -->
+  <section class="section-card" id="section-card">
+    <div class="banana-bg-container" id="banana-bg"></div>
+
+    <div class="card" id="bday-card">
+      <h2 class="card-title">Happy Birthday!!</h2>
+      <p class="card-body">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type.
+      </p>
+    </div>
+  </section>
+
+  <script src="main.js"></script>
+</body>
+</html>
